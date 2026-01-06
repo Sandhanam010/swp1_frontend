@@ -905,15 +905,6 @@
             DEFAULT_USER_EMAIL: 'arthur@example.com'
         };
 
-        // ===== User Profile Data =====
-        const USER_DATA = {
-            name: 'Arthur Morgan',
-            email: 'arthur@example.com',
-            phone: '+91 934-567-8900',
-            college: 'Faculty of Technology',
-            stream: 'Computer Science',
-            year: '2nd Year'
-        };
 
         // ===== Chat History Data =====
         const CHAT_HISTORY = [
@@ -1132,18 +1123,18 @@
         /**
          * Display personal information in alert
          */
-        function openPersonalInfo() {
-            const info = `Personal Information:
+function openPersonalInfo() {
+  const name = document.getElementById("userName").textContent;
+  const email = document.getElementById("userEmail").textContent;
 
-Name: ${USER_DATA.name}
-Email: ${USER_DATA.email}
-Phone: ${USER_DATA.phone}
-College: ${USER_DATA.college}
-Stream: ${USER_DATA.stream}
-Year: ${USER_DATA.year}`;
-            alert(info);
-            toggleProfileDropdown();
-        }
+  alert(`Personal Information:
+
+Name: ${name}
+Email: ${email}`);
+  
+  toggleProfileDropdown();
+}
+
 
         /**
          * Open dialog to edit user profile name
@@ -1196,12 +1187,7 @@ Year: ${USER_DATA.year}`;
         /**
          * Handle user logout
          */
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                alert('Logged out successfully!');
-                window.location.href = 'swp1_login.html';
-            }
-        }
+       
 
         // ===== Modal Management =====
         
@@ -1299,7 +1285,8 @@ Year: ${USER_DATA.year}`;
                             Preferences
                         </button>
                         <div class="profile-menu-divider"></div>
-                        <button class="profile-menu-item danger" onclick="logout()">
+                        <button class="profile-menu-item danger" onclick="handleLogout()">
+
                             <span class="profile-menu-icon">🚪</span>
                             Logout
                         </button>
@@ -1398,6 +1385,30 @@ Year: ${USER_DATA.year}`;
         </ul>
     </div>
 </div>
+<script type="module">
+  import { getCurrentUser, logout, requireAuth } from "./js/auth.js";
+
+  // 🔐 Protect page
+  requireAuth();
+
+  // 🔹 Load logged-in user data into profile
+  getCurrentUser((user) => {
+    document.getElementById("userName").textContent =
+      user.displayName || "User";
+
+    document.getElementById("userEmail").textContent =
+      user.email;
+
+    // Update initials
+    const firstLetter = (user.displayName || user.email)[0].toUpperCase();
+    document.querySelector(".user-profile").textContent = firstLetter;
+    document.querySelector(".profile-avatar-large").textContent = firstLetter;
+  });
+
+  // 🔹 Expose logout to HTML
+  window.handleLogout = logout;
+</script>
+
 
 
 </body>

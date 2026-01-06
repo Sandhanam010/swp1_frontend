@@ -1,14 +1,14 @@
-// auth.js (GLOBAL AUTH FILE)
+
 
 // Firebase SDK imports
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut
-} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 // 🔑 Firebase config
 const firebaseConfig = {
@@ -25,8 +25,6 @@ const auth = getAuth(app);
 // -------------------- LOGIN --------------------
 export async function login(email, password) {
   const cred = await signInWithEmailAndPassword(auth, email, password);
-  const token = await cred.user.getIdToken();
-  localStorage.setItem("firebase_token", token);
   return cred.user;
 }
 
@@ -38,7 +36,6 @@ export async function signup(email, password) {
 // -------------------- LOGOUT --------------------
 export async function logout() {
   await signOut(auth);
-  localStorage.clear();
   window.location.href = "swp1_login.html";
 }
 
@@ -57,5 +54,12 @@ export function redirectIfLoggedIn(redirectTo = "swp1_home.html") {
     if (user) {
       window.location.replace(redirectTo);
     }
+  });
+}
+
+// -------------------- GET CURRENT USER --------------------
+export function getCurrentUser(callback) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) callback(user);
   });
 }
