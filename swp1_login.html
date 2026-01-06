@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f0f4f8;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -23,18 +23,19 @@
 
         .auth-container {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             overflow: hidden;
             width: 100%;
             max-width: 450px;
             animation: slideIn 0.5s ease-out;
+            border: 1px solid #e5e7eb;
         }
 
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(-30px);
+                transform: translateY(-20px);
             }
             to {
                 opacity: 1;
@@ -43,25 +44,39 @@
         }
 
         .auth-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 30px;
+            background: white;
+            padding: 40px 35px 30px 35px;
             text-align: center;
-            color: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .logo-icon {
+            font-size: 40px;
         }
 
         .auth-header h1 {
-            font-size: 28px;
+            font-size: 32px;
             margin-bottom: 8px;
-            font-weight: 600;
+            font-weight: 700;
+            color: #10b981;
         }
 
         .auth-header p {
-            font-size: 14px;
-            opacity: 0.9;
+            font-size: 15px;
+            color: #6b7280;
+            font-weight: 400;
         }
 
         .form-wrapper {
-            padding: 40px 30px;
+            padding: 35px 35px 40px 35px;
         }
 
         .form-container {
@@ -91,28 +106,31 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
-            font-weight: 500;
+            color: #374151;
+            font-weight: 600;
             font-size: 14px;
         }
 
         .form-group input {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
             font-size: 15px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             outline: none;
+            background: #f9fafb;
+            color: #111827;
         }
 
         .form-group input:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #10b981;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
         }
 
         .form-group input::placeholder {
-            color: #999;
+            color: #9ca3af;
         }
 
         .name-group {
@@ -141,43 +159,46 @@
         }
 
         .remember-me input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             cursor: pointer;
+            accent-color: #10b981;
         }
 
         .remember-me label {
             cursor: pointer;
-            color: #666;
+            color: #6b7280;
+            font-weight: 500;
         }
 
         .forgot-password {
-            color: #667eea;
+            color: #10b981;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            transition: color 0.2s ease;
         }
 
         .forgot-password:hover {
-            color: #764ba2;
+            color: #059669;
         }
 
         .submit-button {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 13px;
+            background: #10b981;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
 
         .submit-button:active {
@@ -187,27 +208,30 @@
         .toggle-form {
             text-align: center;
             margin-top: 25px;
-            color: #666;
+            color: #6b7280;
             font-size: 14px;
+            font-weight: 500;
         }
 
         .toggle-form a {
-            color: #667eea;
+            color: #10b981;
             text-decoration: none;
             font-weight: 600;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
         }
 
         .toggle-form a:hover {
-            color: #764ba2;
+            color: #059669;
+            text-decoration: underline;
         }
 
         .error-message {
-            color: #dc3545;
+            color: #ef4444;
             font-size: 13px;
-            margin-top: 5px;
+            margin-top: 6px;
             display: none;
+            font-weight: 500;
         }
 
         .password-strength {
@@ -217,9 +241,9 @@
 
         .strength-bar {
             height: 4px;
-            background: #e0e0e0;
+            background: #e5e7eb;
             border-radius: 2px;
-            margin-top: 5px;
+            margin-top: 6px;
             overflow: hidden;
         }
 
@@ -231,29 +255,29 @@
 
         .strength-weak {
             width: 33%;
-            background: #dc3545;
+            background: #ef4444;
         }
 
         .strength-medium {
             width: 66%;
-            background: #ffc107;
+            background: #f59e0b;
         }
 
         .strength-strong {
             width: 100%;
-            background: #28a745;
+            background: #10b981;
         }
 
         .terms-text {
             margin-top: 20px;
             font-size: 12px;
-            color: #666;
+            color: #6b7280;
             text-align: center;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .terms-text a {
-            color: #667eea;
+            color: #10b981;
             text-decoration: none;
             font-weight: 600;
         }
@@ -262,17 +286,58 @@
             text-decoration: underline;
         }
 
+        
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #9ca3af;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        .divider span {
+            padding: 0 15px;
+            font-weight: 500;
+        }
+
+        .info-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: #f0fdf4;
+            border: 1px solid #d1fae5;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #065f46;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .info-badge::before {
+            content: 'ℹ️';
+            font-size: 16px;
+        }
+
         @media (max-width: 480px) {
             .auth-container {
                 margin: 10px;
             }
 
             .auth-header {
-                padding: 30px 20px;
+                padding: 30px 25px 25px 25px;
             }
 
             .form-wrapper {
-                padding: 30px 20px;
+                padding: 30px 25px;
             }
 
             .form-options {
