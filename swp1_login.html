@@ -492,53 +492,60 @@
             }
         }
 
-        function handleLogin(event) {
-            event.preventDefault();
+        
 
-            // Get form data
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-
-            // Here you would typically send the data to your backend
-            console.log('Login attempt:', { email, password });
-
-            // For demo purposes, show alert
-            alert('Login functionality - Connect this to your Flask/Django backend!');
-
-            // Redirect to home page (uncomment when ready)
-            // window.location.href = 'swp1_home.html';
-        }
-
-        function handleSignup(event) {
-            event.preventDefault();
-
-            // Check if passwords match
-            const password = document.getElementById('signup-password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-
-            if (password !== confirmPassword) {
-                document.getElementById('passwordError').style.display = 'block';
-                return;
-            }
-
-            // Get form data
-            const formData = {
-                firstName: document.getElementById('first-name').value,
-                lastName: document.getElementById('last-name').value,
-                email: document.getElementById('signup-email').value,
-                phone: document.getElementById('phone').value,
-                password: password
-            };
-
-            // Here you would typically send the data to your backend
-            console.log('Signup attempt:', formData);
-
-            // For demo purposes, show alert
-            alert('Account created successfully! Connect this to your Flask/Django backend!');
-
-            // Switch to login form
-            showLogin();
-        }
+            
+        
     </script>
+    <script type="module">
+  import {
+    login,
+    signup,
+    redirectIfLoggedIn
+  } from "./js/auth.js";
+
+  // If user is already logged in, go to home
+  redirectIfLoggedIn();
+
+  window.handleLogin = async function (event) {
+    event.preventDefault();
+
+    try {
+      await login(
+        document.getElementById("login-email").value,
+        document.getElementById("login-password").value
+      );
+
+      // Go to home after login
+      window.location.href = "swp1_home.html";
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  window.handleSignup = async function (event) {
+    event.preventDefault();
+
+    const password = document.getElementById("signup-password").value;
+    const confirm = document.getElementById("confirm-password").value;
+
+    if (password !== confirm) {
+      document.getElementById("passwordError").style.display = "block";
+      return;
+    }
+
+    try {
+      await signup(
+        document.getElementById("signup-email").value,
+        password
+      );
+      alert("Account created. Please login.");
+      showLogin();
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+</script>
+
 </body>
 </html>
