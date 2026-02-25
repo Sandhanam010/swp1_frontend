@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic-settings
+python-dotenv
+llama-index-core
+llama-index-llms-llama-cpp
+llama-index-embeddings-gemini
+llama-index-vector-stores-chroma
+llama-index-readers-file
+chromadb
+llama-cpp-python

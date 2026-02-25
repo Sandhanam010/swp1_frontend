@@ -1,0 +1,23 @@
+# Environment
+.env
+__pycache__/
+*.pyc
+
+# Vector store
+chroma_db/
+
+# Model files
+*.gguf
+
+# Data uploads
+data/*.pdf
+data/*.txt
+!data/.gitkeep
+
+# Virtual environment
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
