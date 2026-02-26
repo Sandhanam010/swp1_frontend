@@ -14,6 +14,6 @@ def get_llm() -> LlamaCPP:
         # Generate kwargs passed to llama-cpp
         generate_kwargs={"top_p": 0.9, "top_k": 40},
         # Model kwargs passed to llama_cpp.Llama()
-        model_kwargs={"n_gpu_layers": 0},  # CPU-only; set >0 if GPU available
+        model_kwargs={"n_gpu_layers": -1},  # -1 = offload ALL layers to Apple Metal GPU
         verbose=False,
     )
